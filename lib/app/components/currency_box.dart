@@ -37,9 +37,14 @@ class CurrencyBox extends StatelessWidget {
               items: items 
                 .map((e) => DropdownMenuItem(
                   value: e,
-                  child: Text(
-                    e.name,
-                    style: TextStyle(color: Colors.white),
+                  child: Row(
+                    children: [
+                      Text(
+                        e.name,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Icon(e.icon),
+                    ]
                   ),
                 ))
                 .toList(),

@@ -31,6 +31,16 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Conversor de moedas"),
+        toolbarHeight: 70,
+        shape: Border(
+          bottom: BorderSide(
+            color: Colors.yellow,
+            width: 4,
+          )
+        ),
+      ),
       body: SizedBox(
         // Garante que o conteúdo ocupe toda a tela
         width: MediaQuery.of(context).size.width,
@@ -38,13 +48,13 @@ class _HomeViewState extends State<HomeView> {
         child: Padding(
           // Espaçamento nas bordas superiores e laterais
           padding: const EdgeInsets.only(
-            top: 75,
             left: 20,
             right: 20,
           ),
           child: Column(
             children: [
               // Exibe uma imagem centralizada no topo
+              SizedBox(height: 30),
               Center(
                 child: SizedBox(
                   width: 300,
@@ -52,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
                   child: Image.asset('assets/images/currency_exchange.png'),
                 ),
               ),
-              SizedBox(height: 40), // Espaço entre a imagem e os campos
+              SizedBox(height: 30), // Espaço entre a imagem e os campos
 
               // Primeira caixa de seleção e texto (moeda de origem)
               CurrencyBox(
@@ -78,14 +88,16 @@ class _HomeViewState extends State<HomeView> {
                   });
                 },
               ),
-              SizedBox(height: 20), // Espaço antes do botão
-
+              SizedBox(height: 30), // Espaço antes do botão
               // Botão para realizar a conversão
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.white,
                   minimumSize: Size(MediaQuery.of(context).size.width, 50),
+                  side: BorderSide(
+                    color: Colors.yellow,
+                    width: 1,
+                  )
                 ),
                 onPressed: () {
                   // Chama o método de conversão do controller
@@ -96,8 +108,15 @@ class _HomeViewState extends State<HomeView> {
                     toText.text = homeControllers.toText.text;
                   });
                 },
-                child: const Text('Converter'),
-              )
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Converter"),
+                    SizedBox(width: 8),
+                    Icon(Icons.currency_exchange)
+                  ],
+                )
+                ),
             ],
           ),
         ),
